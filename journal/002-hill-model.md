@@ -28,4 +28,6 @@ questions, and corrections here. I should distinguish a prediction, a numerical
 observation, an informal argument, and a theorem checked by Lean.
 
 Next possible proof exercise: derive the zero-load velocity and an upper bound.
-Those exercises remain proposed work; they have not been added as Lean theorems.
+At the time of this entry, those exercises were proposed work. The follow-up
+session completed them as `velocity_at_zero` and `velocity_bounds`; see
+[entry 003](003-from-hill-to-circulation.md).

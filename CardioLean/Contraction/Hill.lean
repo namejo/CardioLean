@@ -110,4 +110,22 @@ theorem velocity_strictAntiOn {F₀ a b : ℝ} (ha : 0 < a) (hb : 0 < b)
     mul_pos (mul_pos hb hsum) (sub_pos.mpr hlt)
   nlinarith only [hprod]
 
+/-- Zero-load velocity of the quotient. Physical interpretation uses a > 0.
+This is a project derivation from Hill (1938), not a separately quoted result. -/
+theorem velocity_at_zero (F₀ a b : ℝ) :
+    velocity F₀ a b 0 = b * F₀ / a := by
+  simp [velocity]
+
+/-- On the shortening interval, velocity lies between zero and its zero-load value.
+
+This completes the chapter's bound exercise by reusing the general comparison
+proof, rather than repeating cross multiplication. -/
+theorem velocity_bounds {F₀ a b F : ℝ} (ha : 0 < a) (hb : 0 ≤ b)
+    (hF : 0 ≤ F) (hFF₀ : F ≤ F₀) :
+    0 ≤ velocity F₀ a b F ∧ velocity F₀ a b F ≤ b * F₀ / a := by
+  refine ⟨velocity_nonneg ha hb hF hFF₀, ?_⟩
+  have hF₀ : 0 ≤ F₀ := hF.trans hFF₀
+  have h := velocity_antitoneOn ha hb hF₀ ⟨le_rfl, hF₀⟩ ⟨hF, hFF₀⟩ hF
+  simpa only [velocity_at_zero] using h
+
 end CardioLean.Contraction.Hill

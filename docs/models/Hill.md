@@ -224,6 +224,8 @@ All names in this table are relative to `CardioLean.Contraction.Hill`.
 | `velocity_at_isometric` | `velocity F₀ a b F₀=0`, with no extra hypotheses for this quotient identity. |
 | `velocity_antitoneOn` | If `a>0`, `b≥0`, `F₀≥0`, velocity is nonincreasing on `[0,F₀]`. |
 | `velocity_strictAntiOn` | If `a>0`, `b>0`, `F₀≥0`, velocity is strictly decreasing on `[0,F₀]`. |
+| `velocity_at_zero` | The quotient at zero force equals `bF₀/a`; the algebraic identity needs no extra hypothesis. |
+| `velocity_bounds` | If `a>0`, `b≥0`, `0≤F≤F₀`, then `0≤v(F)≤bF₀/a`. |
 
 `AntitoneOn` means that increasing an input within the set cannot increase the
 output. `StrictAntiOn` means a strictly larger input produces a strictly smaller
@@ -247,6 +249,7 @@ the transitive dependencies. See also [the verification record](../VERIFICATION.
 | `velocity_at_isometric` | Machine-checked proof completed | Complete proof accepted by Lean for the total quotient definition. |
 | `velocity_antitoneOn` | Machine-checked proof completed | Complete proof accepted by Lean on the stated interval. |
 | `velocity_strictAntiOn` | Machine-checked proof completed | Complete proof accepted by Lean with the stronger `b>0` hypothesis. |
+| `velocity_at_zero`, `velocity_bounds` | Machine-checked proof completed | Follow-up project derivations from the same sourced formula; see the verification record. |
 | Application to cardiac tissue | Not started | No cardiac experiment, parameter fit, or validation performed. |
 
 The final setup code passed these commands, each with exit status 0:
@@ -283,7 +286,9 @@ not implemented. Any next model needs its own original sources and assumptions.
 
 ### Exercises for a next session
 
-These are proposed exercises, not additional machine-checked results:
+Exercises 1 and 2 were subsequently completed as `velocity_at_zero` and
+`velocity_bounds`; see the [source map](../SOURCE_MAP.md). The remaining items
+are study prompts, not additional machine-checked results:
 
 1. Substitute `F=0` and derive `v(0)=bF₀/a` when `a≠0`. Which unit does this have?
 2. Using nonnegativity and nonincrease, show `0 ≤ v(F) ≤ bF₀/a` on the admissible interval.
@@ -293,3 +298,8 @@ These are proposed exercises, not additional machine-checked results:
    in your own notes, then ask which extra evidence would be needed for a cardiac application.
 
 Keep the notebook's numerical observations separate from these proposed Lean proof goals.
+
+The follow-up bound proof combines the existing nonnegativity theorem with
+`velocity_antitoneOn`: since `0≤F`, the velocity at `F` is at most its value at
+zero. Simplifying that zero-load value gives `bF₀/a`. This reuses the earlier
+comparison proof instead of repeating its algebra.

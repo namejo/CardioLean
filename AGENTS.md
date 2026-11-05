@@ -13,6 +13,8 @@ changing a model. Preserve the original personal introduction and learning focus
 - Verify citation metadata and the actual equation in the source. Record equation
   numbers, pages, notation mappings, sign conventions, and all assumptions.
   Never fabricate citations, parameter values, physiological claims, or proofs.
+- Map adopted equations and project-derived lemmas in `docs/SOURCE_MAP.md`,
+  with precise paper locators and the actual Lean declaration names.
 - Every model needs the nine sections in `docs/MODEL_TEMPLATE.md`: scientific
   source, biological interpretation, formulation, assumptions, units, Lean
   implementation, proof obligations, verification status, and limitations.
@@ -38,7 +40,8 @@ changing a model. Preserve the original personal introduction and learning focus
   intended declarations public, and use `public import` for root reexports and
   dependencies whose declarations are part of the public API. Expose definition
   bodies with `@[expose]` only when downstream unfolding is intended.
-- Add every new module to `CardioLean.lean` so the default build checks it.
+- Add every new library module to `CardioLean.lean` so the default build checks it.
+  Check standalone test modules explicitly in CI; do not create an import cycle.
   Unimplemented modules should contain only purpose/status documentation and an
   appropriate namespace, with imports only when justified.
 - Preserve pinned, compatible toolchain and dependency revisions. Keep

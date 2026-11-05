@@ -87,3 +87,55 @@ The exported chapter figure was visually inspected. Markdown and notebook links,
 notebook format, and preservation of the original README introduction were checked.
 The optional Python environment and notebook checkpoint directories are ignored.
 The GitHub workflow checks Lean; notebook execution was checked separately on Proxmox.
+
+## First circulation component and paper mapping (2026-11-05)
+
+Environment: Proxmox `prohomelab`, `/root/CardioLean`; Lean 4.35.0, Lake
+5.0.0-src+eb6cafb, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+No toolchain or Lean dependency revision was changed.
+
+Successful commands on the final Lean sources:
+
+```bash
+lake exe cache get
+lake build
+lake env lean CardioLean/Contraction/Hill.lean
+lake env lean CardioLean/Circulation/Windkessel.lean
+lake env lean test/ModelChecks.lean
+```
+
+The full library build completed 2218 jobs with no warnings. Hill now has eight
+checked theorems, and Windkessel has nine. A temporary `import all` file ran
+`#print axioms` on all 17; every result depended only on `propext`,
+`Classical.choice`, and `Quot.sound`, without `sorryAx` or new custom axioms.
+The root-import model checks verify API use, a zero-inflow solution example,
+equal-RC pressure curves, failure of a zero-compliance balance, and growth with
+negative compliance. The GitHub workflow now includes these checks; its hosted
+result for this new commit must be observed separately.
+
+The source-map index was checked against all 17 actual theorem names. Markdown
+and notebook relative links, original README preservation, and absence of proof
+holes were checked. Crossref metadata was checked for the four new references;
+only the two Windkessel papers supplied adopted equations. Candidate paper
+reading depth is recorded in the research tree.
+
+Both notebooks executed successfully using Python 3.13.5 and the existing optional
+pins (Matplotlib 3.11.2, ipykernel 7.4.0, NBClient 0.11.0):
+
+```bash
+python notebooks/execute.py
+python notebooks/execute.py windkessel-exploration.ipynb
+```
+
+The Windkessel notebook checked 501 baseline samples, bounds, ordering, the
+exp(-1) excess-pressure factor, and identical pressure curves from positive
+parameter pairs with equal RC. With synthetic R=2, C=0.5, pOut=5, pInit=15 in
+the stated units, p(RC) was approximately 8.678794 mmHg. Forward-Euler errors at
+RC decreased from about 0.514732 to 0.058242 mmHg as the step was successively
+halved from RC/4 to RC/32. A step of 1.25 RC gave an initial update to 2.5 mmHg,
+below the 5 mmHg reference. The exported figure was visually inspected.
+
+These are finite floating-point experiments, not proofs about the numerical
+scheme or experimental validation. No general-input solution theory, uniqueness,
+formal infinite-time limit, parameter fitting, chamber/valve coupling, or
+independent human scientific review is claimed.

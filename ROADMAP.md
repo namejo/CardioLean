@@ -43,3 +43,17 @@ The module names reserve space for these topics; they do not assert that their e
 Rice2008, Land2017, cross-bridge dynamics, ventricular mechanics, and coupled heart models remain future work. Before implementing any of them, establish the underlying equations, source traceability, unit conventions, and tractable proof goals. O'Hara–Rudy and other complex cell models are outside the initial setup.
 
 Experimental comparison, numerical simulation, mathematical proof, and independent review should continue to have separate records throughout these milestones.
+
+## Progress after the initial setup — 2026-11-05
+
+The Hill zero-load velocity and bounds exercises are now checked. The first
+dynamic component is a zero-inflow two-element Windkessel with verified
+derivative, balance, initial value, bounds, nonincrease, time constant, and
+same-RC equality. This is a small step in milestone 3, not completion of that
+milestone or a coupled heart model.
+
+See [the research tree](docs/research/001-next-directions.md),
+[source mapping](docs/SOURCE_MAP.md), and [Windkessel chapter](docs/models/Windkessel.md).
+Next candidates are uniqueness or constant nonzero inflow, followed by a sourced
+volume/valve interface. Calcium buffering and ventricular pressure–volume papers
+remain reading candidates; their equations have not been adopted.

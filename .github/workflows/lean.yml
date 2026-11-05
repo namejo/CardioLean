@@ -20,3 +20,5 @@ jobs:
           auto-config: false
           use-mathlib-cache: true
           build: true
+      - name: Check public API and excluded parameter regimes
+        run: lake env lean test/ModelChecks.lean

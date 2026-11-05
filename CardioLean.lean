@@ -29,6 +29,6 @@ public import CardioLean.Models.ZeroDimensionalHeart
 # CardioLean
 
 Library entry point. Imports every project module so `lake build` checks the
-entire initial structure. Only `Contraction.Hill` currently defines mathematics;
-the other modules document future work. See README.md and docs/MODEL_TEMPLATE.md.
+entire structure. `Contraction.Hill` and `Circulation.Windkessel` currently
+define mathematics; the other modules document future work. See README.md and docs/MODEL_TEMPLATE.md.
 -/

@@ -33,7 +33,7 @@ lake build
 
 The first command downloads precompiled Mathlib files. The second checks the library, including every planned module imported by `CardioLean.lean`. A successful build establishes that Lean accepts the included definitions and proofs against the pinned dependencies. It does not establish that an equation accurately describes heart physiology. The GitHub Actions workflow in [`.github/workflows/lean.yml`](.github/workflows/lean.yml) repeats these checks on pushes and pull requests.
 
-**Setup verification (2026-11-05):** `lake exe cache get`, `lake build`, and a direct Lean check of `Hill.lean` succeeded on Proxmox with the pinned versions. All six theorem declarations below were checked. See [the verification record](docs/VERIFICATION.md) for the environment and limits of these checks. [GitHub Actions also passed](https://github.com/namejo/CardioLean/actions/runs/41995730781) for commit `a01e6d8`.
+**Setup verification (2026-11-05):** `lake exe cache get`, `lake build`, and a direct Lean check of `Hill.lean` succeeded on Proxmox with the pinned versions. The six original Hill theorems were checked in that setup; subsequent additions are recorded in the verification notes. See [the verification record](docs/VERIFICATION.md) for the environment and limits of these checks. [GitHub Actions also passed](https://github.com/namejo/CardioLean/actions/runs/41995730781) for commit `a01e6d8`.
 
 ## Repository map
 
@@ -52,7 +52,7 @@ journal/                     Learning notes and open questions
 docs/MODEL_TEMPLATE.md       Scientific and mathematical documentation checklist
 ```
 
-The initial scope is small: one algebraic force-velocity example. Modules other than [Hill.lean](CardioLean/Contraction/Hill.lean) document intended purposes; they do not yet implement the corresponding cardiac models.
+The current implementation contains two small components: [Hill force–velocity](CardioLean/Contraction/Hill.lean) and [zero-inflow two-element Windkessel circulation](CardioLean/Circulation/Windkessel.lean). The other reserved modules document intended purposes. These components are not yet coupled.
 
 ## First example: Hill's force-velocity relationship
 
@@ -78,10 +78,31 @@ The implementation contains the following statements in the namespace `CardioLea
 | `velocity_at_isometric` | Show that substituting `F₀` gives zero. |
 | `velocity_antitoneOn` | Show that increasing force cannot increase velocity on `[0, F₀]`. |
 | `velocity_strictAntiOn` | Show strict decrease when `b > 0`. |
+| `velocity_at_zero` | Compute zero-load velocity. |
+| `velocity_bounds` | Bound admissible velocity between zero and `bF₀/a`. |
 
 Start with [Chapter 1: understanding Hill](docs/models/Hill.md), then explore the [force–velocity notebook](notebooks/hill-exploration.ipynb). [Notebook setup instructions](notebooks/README.md) explain how to rerun the plots. The implementation comments connect each proof to its assumptions; build verification is recorded above.
 
 Hill's original work studied skeletal muscle. Using this relationship as a learning example does not validate its applicability to cardiac muscle. Source details and links are in [REFERENCES.md](REFERENCES.md).
+
+## First dynamic example: arterial pressure relaxation
+
+[Chapter 2](docs/models/Windkessel.md) studies a two-element Windkessel with
+constant positive resistance and compliance and zero inflow. Lean verifies its
+exponential pressure curve against the differential flow balance, initial value,
+bounds, nonincrease, and time constant. A further theorem shows why the zero-inflow
+pressure curve alone cannot distinguish different parameter pairs with equal `R*C`.
+
+The [notebook](notebooks/windkessel-exploration.ipynb) compares the exact curve
+with a numerical approximation using synthetic parameters. The
+[research decision tree](docs/research/001-next-directions.md) records other
+investigated directions and prerequisites for coupling components. The
+[source-to-Lean index](docs/SOURCE_MAP.md) maps every implemented equation and
+derived theorem to its scientific source or project derivation.
+
+The Lean workflow also runs `lake env lean test/ModelChecks.lean` to exercise
+the public API and excluded parameter regimes. Notebook execution is checked
+separately; see [the verification record](docs/VERIFICATION.md).
 
 ## Learning and contributing
 

@@ -1,0 +1,51 @@
+# Scientific sources ↔ Lean declarations
+
+This is the central attribution index. A source equation motivates a definition;
+project lemmas are properties proved here under their exact Lean hypotheses.
+The table does not mean that the original authors stated or formally proved
+those lemmas, or that their entire paper was formalized. Full bibliographic
+entries are in [REFERENCES.md](../REFERENCES.md).
+
+## Implemented equations
+
+| Reference and locator | Lean module / namespace | Correspondence and scope |
+|---|---|---|
+| Hill1938, printed p. 161, equations (1)–(2) | [Contraction/Hill.lean](../CardioLean/Contraction/Hill.lean), `CardioLean.Contraction.Hill` | `velocity`: rearranged force–velocity relation; P/P₀ renamed F/F₀ |
+| Wang2003, p. H1359, equations (1)–(2), resistive-outflow paragraph; Alastruey2010, equation (1) | [Circulation/Windkessel.lean](../CardioLean/Circulation/Windkessel.lean), `CardioLean.Circulation.Windkessel` | `outflow` and `SatisfiesBalanceAt`: explicit derivative witness and flow balance; R/C fixed; P∞ or P_out becomes pOut |
+| Wang2003, equation (3) and following zero-inflow discussion; Alastruey2010, equation (2) | Same Windkessel module | `decay`: zero-inflow, initial-time-zero specialization; not the general forced solution |
+
+All four function/predicate definitions (`velocity`, `outflow`,
+`SatisfiesBalanceAt`, `decay`) have status **Formal definition completed**.
+Their model documentation supplies assumptions, units, biological interpretation,
+and limitations: [Hill](models/Hill.md), [Windkessel](models/Windkessel.md).
+
+## Project-derived results
+
+Every theorem listed here has status **Machine-checked proof completed**;
+[verification evidence](VERIFICATION.md) records the actual checks. Names below
+are relative to the module namespace in the first column.
+
+| Namespace | Derived Lean theorems | Relation to scientific source |
+|---|---|---|
+| `CardioLean.Contraction.Hill` | `denominator_pos`, `equation_iff_velocity` | Side condition and reversible rearrangement of the Hill equation |
+| Same | `velocity_nonneg`, `velocity_at_isometric`, `velocity_antitoneOn`, `velocity_strictAntiOn` | Project proofs of signs, endpoint, and comparisons under explicit hypotheses |
+| Same | `velocity_at_zero`, `velocity_bounds` | Project derivations of zero-load velocity and interval bounds, extending the chapter exercises |
+| `CardioLean.Circulation.Windkessel` | `decay_initial`, `decay_hasDerivAt`, `decay_satisfies_zeroInflow` | Check the specialized candidate against its initial condition and the source balance |
+| Same | `decay_ge_out`, `decay_le_initial`, `decay_antitone`, `outflow_nonneg` | Project proofs of pressure and outflow properties |
+| Same | `decay_at_timeConstant` | Check the exact exp(-1) pressure-difference factor at RC |
+| Same | `decay_eq_of_product_eq` | Project derivation: identical RC products give identical pressure curves for the same initial/reference pressures |
+
+The test examples in [test/ModelChecks.lean](../test/ModelChecks.lean) exercise
+these results and excluded parameter cases. The Python notebooks independently
+implement numerical formulas; they are not extracted from Lean and do not add
+machine-checked theorems. Future refactoring must preserve this distinction.
+
+## Investigated papers without an implemented equation
+
+- WagnerKeizer1994: calcium-buffering/diffusion reading candidate; no Lean equation mapped yet.
+- SugaSagawa1974: ventricular pressure–volume candidate; metadata checked, original full text not yet inspected.
+
+These branches are **Under investigation**, with evidence and next prerequisites
+in [the research tree](research/001-next-directions.md). Other reserved modules
+remain **Not started**. No independent human review or physiological validation
+is implied by any status here.

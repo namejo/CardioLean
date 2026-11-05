@@ -1,4 +1,4 @@
-# Hill exploration notebook
+# Exploration notebooks
 
 Start with [the Hill chapter](../docs/models/Hill.md), then open
 [hill-exploration.ipynb](hill-exploration.ipynb). Saved outputs make the notebook
@@ -38,3 +38,17 @@ lake build
 
 Execution uses [NBClient](https://nbclient.readthedocs.io/en/latest/client.html);
 figures use [Matplotlib](https://matplotlib.org/stable/).
+
+## Windkessel follow-up
+
+[windkessel-exploration.ipynb](windkessel-exploration.ipynb) studies a zero-inflow
+pressure curve, equal-RC parameter pairs, and forward-Euler time steps. Read
+[the model chapter](../docs/models/Windkessel.md) for sources and assumptions.
+Using the same optional environment, execute it with:
+
+```bash
+.venv-notebooks/bin/python notebooks/execute.py windkessel-exploration.ipynb
+```
+
+This regenerates `docs/assets/windkessel-exploration.png`. The default command
+without a notebook argument still executes the Hill notebook.

@@ -22,6 +22,46 @@ Biological Sciences, **126**(843), 136–195. Published 10 October 1938.
   [Crossref DOI record](https://api.crossref.org/works/10.1098%2Frspb.1938.0050)
   and the equation checked in the original scan on 2026-11-05.
 
+## Additional sources and investigated directions
+
+**[Wang2003]** Wang, J.-J., O’Brien, A. B., Shrive, N. G., Parker, K. H., and
+Tyberg, J. V. (2003). *Time-domain representation of ventricular-arterial coupling
+as a windkessel and wave system*. American Journal of Physiology–Heart and
+Circulatory Physiology, **284**(4), H1358–H1368.
+[DOI](https://doi.org/10.1152/ajpheart.00175.2002).
+[Author-hosted full text](https://kparker.bg-research.cc.ic.ac.uk/wave_intensity_web/pubs/Wang%20JJ%20Am%20J%20Physiol%202003.pdf).
+Methods / Theory / Windkessel theory, printed H1359 (PDF page 2), equations
+(1)–(3), including the resistive-outflow paragraph and zero-inflow specialization.
+Only that selected component is represented in Lean.
+
+**[Alastruey2010]** Alastruey, J. (2010). *On the Mechanics Underlying the
+Reservoir-Excess Separation in Systemic Arteries and their Implications for Pulse
+Wave Analysis*. Cardiovascular Engineering, **10**(4), 176–189.
+[DOI and full text](https://doi.org/10.1007/s10558-010-9109-9).
+Methodology / Reservoir-Excess Separation, equations (1)–(2), is the direct
+notation reference for our balance and specialized zero-inflow solution.
+The paper's distributed-vessel analysis and other results are not formalized.
+
+**[WagnerKeizer1994]** Wagner, J., and Keizer, J. (1994). *Effects of rapid buffers
+on Ca2+ diffusion and Ca2+ oscillations*. Biophysical Journal, **67**(1), 447–456.
+[DOI](https://doi.org/10.1016/S0006-3495(94)80500-4).
+[Primary article record and scan](https://pmc.ncbi.nlm.nih.gov/articles/PMC1225377/).
+Metadata and abstract inspected; candidate for further reading, not a source
+for an implemented equation or a claim of cardiac-specific validation.
+
+**[SugaSagawa1974]** Suga, H., and Sagawa, K. (1974). *Instantaneous Pressure-Volume
+Relationships and Their Ratio in the Excised, Supported Canine Left Ventricle*.
+Circulation Research, **35**(1), 117–126.
+[DOI](https://doi.org/10.1161/01.RES.35.1.117).
+[PubMed record](https://pubmed.ncbi.nlm.nih.gov/4841253/).
+Metadata checked; original full text still needs inspection before an equation
+is adopted. No pressure–volume formalization is attributed to this paper yet.
+
+All four entries were checked against Crossref metadata on 2026-11-05. Equation
+inspection was completed only for the two Windkessel sources as stated above.
+See [the source-to-Lean index](docs/SOURCE_MAP.md) and
+[research decision tree](docs/research/001-next-directions.md).
+
 ## Lean and mathematical-library resources
 
 **[TPIL4]** Avigad, J., de Moura, L., Kong, S., and Ullrich, S., with
