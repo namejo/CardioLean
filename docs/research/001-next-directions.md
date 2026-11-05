@@ -10,7 +10,8 @@ CardioLean: from one force–velocity curve toward coupled models
 │   └── Zero-load velocity and interval bounds → implemented this session
 ├── Arterial circulation: Wang (2003), Alastruey (2010)
 │   ├── Zero-inflow two-element Windkessel → selected and implemented
-│   └── Nonzero inflow, uniqueness, volume/valve interfaces → next work
+│   ├── Constant inflow and conditional uniqueness → implemented in follow-up
+│   └── Volume/valve interfaces and switching regularity → next work
 ├── Calcium: Wagner & Keizer (1994)
 │   └── Buffering and diffusion → reading candidate; no equations adopted yet
 └── Ventricular mechanics: Suga & Sagawa (1974)
@@ -30,7 +31,9 @@ References and stable links: [REFERENCES.md](../../REFERENCES.md).
 
 The Windkessel branch was selected because it adds differentiation and a genuine
 flow-balance check with one state variable. A time-dependent input is allowed by
-the balance definition, but only the zero-input closed form is proved here.
+the balance definition. The initial implementation proved the zero-input curve;
+[the follow-up](../models/WindkesselConstant.md) adds a constant-input curve and
+conditional uniqueness even for a nonconstant common input.
 This is a choice of learning scope, not a ranking of biological importance.
 The reservoir/wave separation in the cited papers is beyond this implementation;
 we do not assume that all their interpretations follow from the selected equation.
@@ -57,9 +60,9 @@ These are proposed engineering and mathematical prerequisites, not completed res
 
 ## Suggested next branch
 
-First study uniqueness or constant-input forcing in the same one-compartment
-model. Then investigate a volume-conserving chamber/valve interface using an
-original source. Calcium, electrophysiology, detailed contraction, and geometry
+Constant-input forcing and interval-local conditional uniqueness are now checked.
+Next investigate a volume-conserving chamber/valve interface using an original
+source, together with one-sided regularity and matching conditions at switches. Calcium, electrophysiology, detailed contraction, and geometry
 remain separate research tasks; no Rice, Land, or coupled-heart model is implemented.
 
 Each adopted equation must get a model chapter and an entry in

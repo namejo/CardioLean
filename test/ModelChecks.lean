@@ -34,3 +34,27 @@ example : ¬ SatisfiesBalanceAt 1 0 0 (fun _ => 0) (fun _ => 1) 0 := by
 -- Negative compliance can produce growth: positivity assumptions have content.
 example : 1 < decay 1 (-1) 0 1 1 := by
   norm_num [decay]
+
+-- Constant nonzero input must satisfy the same balance with that actual input.
+example (t : ℝ) :
+    SatisfiesBalanceAt 2 (1 / 2) 5 (fun _ => 5) (constantPressure 2 (1 / 2) 5 5 10) t := by
+  exact constantPressure_satisfies_balance (by norm_num) (by norm_num) 5 5 10 t
+
+-- Uniqueness is local to the observed interval; no global solution is assumed.
+example {p : ℝ → ℝ} {t : ℝ} (ht : 0 ≤ t)
+    (hp : ∀ s ∈ Set.Icc 0 t, SatisfiesBalanceAt 2 (1 / 2) 5 (fun _ => 5) p s)
+    (hInit : p 0 = 10) : p t = constantPressure 2 (1 / 2) 5 5 10 t := by
+  exact constantPressure_unique (by norm_num) (by norm_num) ht hp hInit
+
+-- The rising case is bounded by the initial value and the new equilibrium 15.
+example {t : ℝ} (ht : 0 ≤ t) :
+    10 ≤ constantPressure 2 (1 / 2) 5 5 10 t ∧
+    constantPressure 2 (1 / 2) 5 5 10 t ≤ 15 := by
+  have h := constantPressure_bounds (R := 2) (C := 1 / 2) (pOut := 5)
+    (q := 5) (pInit := 10) (by norm_num) (by norm_num) ht
+  norm_num [equilibriumPressure] at h
+  exact h
+
+-- The previous zero-input model remains an exact specialization.
+example : constantPressure 2 (1 / 2) 5 0 10 = decay 2 (1 / 2) 5 10 :=
+  constantPressure_zero 2 (1 / 2) 5 10

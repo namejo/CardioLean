@@ -54,6 +54,7 @@ milestone or a coupled heart model.
 
 See [the research tree](docs/research/001-next-directions.md),
 [source mapping](docs/SOURCE_MAP.md), and [Windkessel chapter](docs/models/Windkessel.md).
-Next candidates are uniqueness or constant nonzero inflow, followed by a sourced
-volume/valve interface. Calcium buffering and ventricular pressure–volume papers
+The follow-up completed constant nonzero inflow and interval-local conditional
+uniqueness, documented in [Chapter 3](docs/models/WindkesselConstant.md).
+A sourced volume/valve interface and switching regularity remain next candidates. Calcium buffering and ventricular pressure–volume papers
 remain reading candidates; their equations have not been adopted.

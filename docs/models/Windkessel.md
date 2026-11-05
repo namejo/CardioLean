@@ -136,9 +136,11 @@ or a different forced-flow experiment is observed.
 The definitions are **Formal definition completed**. All nine theorems above
 are **Machine-checked proof completed** on Proxmox with the pinned toolchain;
 see [the verification record](../VERIFICATION.md) for commands and evidence.
-No independent human review is claimed. General-input existence and uniqueness,
-a formal limit theorem at infinite time, and numerical-method guarantees are
-**Not started**.
+No independent human review is claimed. [Chapter 3](WindkesselConstant.md) now
+adds constant input and interval-local conditional uniqueness, including uniqueness
+for arbitrary common input if two differentiable solutions already exist.
+General-input existence, a formal limit theorem at infinite time, and
+numerical-method guarantees remain **Not started**.
 
 [ModelChecks.lean](../../test/ModelChecks.lean) exercises the public API and
 excluded cases. It checks that zero compliance can make the balance impossible,
@@ -159,8 +161,8 @@ The figure compares equal-RC curves and a forward-Euler approximation, using
 synthetic values. After one time constant it is the pressure **difference above
 the reference**, not total pressure, that is multiplied by `exp(-1)`.
 
-A next formal step could prove uniqueness for this initial-value problem or
-add a constant nonzero inflow. Arbitrary waveforms need additional regularity
+The next chapter completes the proposed constant-input and conditional uniqueness
+steps. Arbitrary waveforms need additional regularity
 and solution theory. Pressure-dependent compliance, valve switching, chamber
 volume, and coupling to contraction each need their own definitions and sources.
 A proof of this component does not establish physiological accuracy or predict

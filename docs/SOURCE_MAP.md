@@ -13,11 +13,13 @@ entries are in [REFERENCES.md](../REFERENCES.md).
 | Hill1938, printed p. 161, equations (1)–(2) | [Contraction/Hill.lean](../CardioLean/Contraction/Hill.lean), `CardioLean.Contraction.Hill` | `velocity`: rearranged force–velocity relation; P/P₀ renamed F/F₀ |
 | Wang2003, p. H1359, equations (1)–(2), resistive-outflow paragraph; Alastruey2010, equation (1) | [Circulation/Windkessel.lean](../CardioLean/Circulation/Windkessel.lean), `CardioLean.Circulation.Windkessel` | `outflow` and `SatisfiesBalanceAt`: explicit derivative witness and flow balance; R/C fixed; P∞ or P_out becomes pOut |
 | Wang2003, equation (3) and following zero-inflow discussion; Alastruey2010, equation (2) | Same Windkessel module | `decay`: zero-inflow, initial-time-zero specialization; not the general forced solution |
+| Wang2003, p. H1359, equations (1)–(3); Alastruey2010, equations (1)–(2) | [Circulation/WindkesselConstant.lean](../CardioLean/Circulation/WindkesselConstant.lean), same Windkessel namespace | `equilibriumPressure` and `constantPressure`: project constant-input specialization, initial time zero |
 
-All four function/predicate definitions (`velocity`, `outflow`,
-`SatisfiesBalanceAt`, `decay`) have status **Formal definition completed**.
+All six function/predicate definitions (`velocity`, `outflow`,
+`SatisfiesBalanceAt`, `decay`, `equilibriumPressure`, `constantPressure`) have status **Formal definition completed**.
 Their model documentation supplies assumptions, units, biological interpretation,
-and limitations: [Hill](models/Hill.md), [Windkessel](models/Windkessel.md).
+and limitations: [Hill](models/Hill.md), [Windkessel](models/Windkessel.md),
+[constant input and uniqueness](models/WindkesselConstant.md).
 
 ## Project-derived results
 
@@ -34,6 +36,20 @@ are relative to the module namespace in the first column.
 | Same | `decay_ge_out`, `decay_le_initial`, `decay_antitone`, `outflow_nonneg` | Project proofs of pressure and outflow properties |
 | Same | `decay_at_timeConstant` | Check the exact exp(-1) pressure-difference factor at RC |
 | Same | `decay_eq_of_product_eq` | Project derivation: identical RC products give identical pressure curves for the same initial/reference pressures |
+
+The following additional declarations extend the same Windkessel namespace in
+`WindkesselConstant.lean`, also with status **Machine-checked proof completed**:
+
+| Derived Lean theorems | Attribution and scope |
+|---|---|
+| `constantPressure_initial`, `constantPressure_zero` | Project checks of initial value and exact zero-input specialization |
+| `outflow_at_equilibrium`, `constantPressure_satisfies_balance` | Project checks of the equilibrium and the constant-input source balance |
+| `constantPressure_bounds`, `constantPressure_antitone`, `constantPressure_monotone` | Project bounds and comparisons for the specialized solution |
+| `solutions_unique`, `constantPressure_unique` | Project integrating-factor / mean-value argument for interval-local conditional uniqueness; not an existence result for arbitrary inputs |
+
+The source equations motivate these results; the uniqueness proof also uses
+Mathlib's `Analysis/Calculus/MeanValue.lean` at the pinned revision. No scientific
+paper is credited with supplying that Lean proof.
 
 The test examples in [test/ModelChecks.lean](../test/ModelChecks.lean) exercise
 these results and excluded parameter cases. The Python notebooks independently

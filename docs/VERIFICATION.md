@@ -139,3 +139,59 @@ These are finite floating-point experiments, not proofs about the numerical
 scheme or experimental validation. No general-input solution theory, uniqueness,
 formal infinite-time limit, parameter fitting, chamber/valve coupling, or
 independent human scientific review is claimed.
+
+## Constant input and interval-local uniqueness (2026-11-05)
+
+Environment: Proxmox `prohomelab`, `/root/CardioLean`, Lean 4.35.0, Lake
+5.0.0-src+eb6cafb, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+The toolchain, manifest, and optional Python dependency pins are unchanged.
+
+These commands completed successfully on the final Lean code:
+
+```bash
+lake exe cache get
+lake build
+lake env lean CardioLean/Circulation/WindkesselConstant.lean
+lake env lean test/ModelChecks.lean
+```
+
+The build completed 2219 jobs without warnings. Nine new theorems establish
+constant-input initial value, zero-input specialization, equilibrium outflow,
+flow balance, interval bounds, nonincrease/nondecrease, conditional uniqueness
+for a common arbitrary input, and agreement with the constant-input closed form.
+The library now has 26 named model theorems. An `import all` / `#print axioms`
+audit of every one reported only `propext`, `Classical.choice`, and `Quot.sound`,
+with no `sorryAx` or custom axioms.
+
+The CI model checks now also exercise nonzero flow, interval-local uniqueness
+with an arbitrary candidate function, rising-case bounds, and exact recovery of
+the zero-input model. They passed on Proxmox. Hosted CI for the published commit
+requires its own observed result; this record does not infer that from local checks.
+
+The new notebook completed every cell in a fresh kernel:
+
+```bash
+python notebooks/execute.py windkessel-constant-inflow.ipynb
+```
+
+Using Python 3.13.5 and the existing optional package pins, it checked 501 samples
+for each of rising, equilibrium, and falling curves. With synthetic R=2, C=0.5,
+pOut=5 and q=5 in the documented units, equilibrium pressure was 15 mmHg.
+Pressures at RC for initial values 10, 15, and 20 mmHg were approximately
+13.160603, 15, and 16.839397 mmHg. Euler errors at RC decreased from about
+0.257366 to 0.029121 mmHg as the step was halved from RC/4 to RC/32.
+A specific equal-RC pair gave identical zero-input curves but distinct curves
+with the same nonzero input. This is a finite example, not a general parameter
+identifiability proof. The saved plot was visually inspected.
+
+The source index covers all 26 theorem names; relative links, all library imports,
+absence of proof holes, notebook format/completion, and preservation of the
+original README introduction were checked. No new scientific equation was adopted
+from an uninspected paper: the new curve is an explicit specialization of the
+already cited source balance.
+
+The uniqueness theorem requires the ordinary derivative balance at every point
+of the closed observation interval, including endpoints. It is conditional on
+the existence of those candidates. General-input existence, weaker endpoint
+regularity, switching inputs/valves, infinite-time limits, numerical-method
+guarantees, parameter fitting, and physiological validation remain open.

@@ -52,3 +52,17 @@ Using the same optional environment, execute it with:
 
 This regenerates `docs/assets/windkessel-exploration.png`. The default command
 without a notebook argument still executes the Hill notebook.
+
+## Constant-input follow-up
+
+[windkessel-constant-inflow.ipynb](windkessel-constant-inflow.ipynb) explores rising,
+falling, and equilibrium curves, nonzero-input Euler steps, and a specific
+equal-RC parameter comparison. Read [Chapter 3](../docs/models/WindkesselConstant.md)
+for the conditional uniqueness proof and its assumptions. Run:
+
+```bash
+.venv-notebooks/bin/python notebooks/execute.py windkessel-constant-inflow.ipynb
+```
+
+This regenerates `docs/assets/windkessel-constant-inflow.png`. Numerical checks
+do not prove uniqueness or general parameter identifiability.

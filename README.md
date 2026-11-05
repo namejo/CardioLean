@@ -52,7 +52,9 @@ journal/                     Learning notes and open questions
 docs/MODEL_TEMPLATE.md       Scientific and mathematical documentation checklist
 ```
 
-The current implementation contains two small components: [Hill force–velocity](CardioLean/Contraction/Hill.lean) and [zero-inflow two-element Windkessel circulation](CardioLean/Circulation/Windkessel.lean). The other reserved modules document intended purposes. These components are not yet coupled.
+The current implementation contains two small components: [Hill force–velocity](CardioLean/Contraction/Hill.lean) and [zero-inflow two-element Windkessel circulation](CardioLean/Circulation/Windkessel.lean). The other reserved modules document intended purposes. These components are not yet coupled. The Windkessel follow-up also implements
+constant inflow and conditional uniqueness in
+[WindkesselConstant.lean](CardioLean/Circulation/WindkesselConstant.lean).
 
 ## First example: Hill's force-velocity relationship
 
@@ -99,6 +101,13 @@ with a numerical approximation using synthetic parameters. The
 investigated directions and prerequisites for coupling components. The
 [source-to-Lean index](docs/SOURCE_MAP.md) maps every implemented equation and
 derived theorem to its scientific source or project derivation.
+
+[Chapter 3](docs/models/WindkesselConstant.md) extends this to constant inflow.
+It proves the equilibrium pressure, bounds for rising and falling curves, and
+conditional uniqueness for two differentiable solutions with the same input and
+initial pressure on the observed interval. The
+[constant-input notebook](notebooks/windkessel-constant-inflow.ipynb) illustrates
+these cases and distinguishes uniqueness from parameter identification.
 
 The Lean workflow also runs `lake env lean test/ModelChecks.lean` to exercise
 the public API and excluded parameter regimes. Notebook execution is checked

@@ -32,6 +32,8 @@ Circulatory Physiology, **284**(4), H1358–H1368.
 [Author-hosted full text](https://kparker.bg-research.cc.ic.ac.uk/wave_intensity_web/pubs/Wang%20JJ%20Am%20J%20Physiol%202003.pdf).
 Methods / Theory / Windkessel theory, printed H1359 (PDF page 2), equations
 (1)–(3), including the resistive-outflow paragraph and zero-inflow specialization.
+The follow-up also uses the general balance to derive a constant-input solution;
+its integrating-factor uniqueness proof is a project derivation.
 Only that selected component is represented in Lean.
 
 **[Alastruey2010]** Alastruey, J. (2010). *On the Mechanics Underlying the
@@ -39,7 +41,7 @@ Reservoir-Excess Separation in Systemic Arteries and their Implications for Puls
 Wave Analysis*. Cardiovascular Engineering, **10**(4), 176–189.
 [DOI and full text](https://doi.org/10.1007/s10558-010-9109-9).
 Methodology / Reservoir-Excess Separation, equations (1)–(2), is the direct
-notation reference for our balance and specialized zero-inflow solution.
+notation reference for our balance and specialized zero/constant-inflow solutions.
 The paper's distributed-vessel analysis and other results are not formalized.
 
 **[WagnerKeizer1994]** Wagner, J., and Keizer, J. (1994). *Effects of rapid buffers
