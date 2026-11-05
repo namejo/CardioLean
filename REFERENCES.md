@@ -64,6 +64,39 @@ inspection was completed only for the two Windkessel sources as stated above.
 See [the source-to-Lean index](docs/SOURCE_MAP.md) and
 [research decision tree](docs/research/001-next-directions.md).
 
+## Passive mechanics foundations
+
+**[Roylance2001]** Roylance, D. (2001). *Engineering Viscoelasticity*.
+Department of Materials Science and Engineering, Massachusetts Institute of
+Technology, teaching notes dated 24 October 2001.
+[Author/institution-hosted PDF](https://web.mit.edu/course/3/3.11/www/modules/visco.pdf).
+Section 4.1, equation (22), supplies the Maxwell rate law; section 3 covers
+measurement protocols and harmonic response; section 4 and problems 7–10
+cover spring–dashpot networks and Voigt creep. This is a mathematical teaching
+source about materials, not cardiomyocyte experimental validation.
+
+**[Caporizzo2018]** Caporizzo, M. A., Chen, C. Y., Salomon, A. K., Margulies,
+K. B., and Prosser, B. L. (2018). *Microtubules Provide a Viscoelastic Resistance
+to Myocyte Motion*. Biophysical Journal, **115**(9), 1796–1807.
+[DOI](https://doi.org/10.1016/j.bpj.2018.09.019).
+[Original article full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC6224693/).
+Figures 2D/3B motivate a parallel Kelvin–Voigt/Maxwell network. Online HTML/MathML
+Methods / Mathematical model for myocyte contractility, equations (3)–(4), were
+inspected, and Figure 2D was visually checked. A coefficient discrepancy against
+our branch-law derivation is recorded in [the source audit](docs/research/002-viscoelastic-source-audit.md).
+We do not present our equation as an unmodified transcription of equation (4),
+and have not reproduced the experimental data, fitted parameters, or complete model.
+Metadata was checked against Crossref on 2026-11-05.
+
+**[Moulton2017]** Moulton, M. J., Hong, B. D., and Secomb, T. W. (2017).
+*Simulation of Left Ventricular Dynamics Using a Low-Order Mathematical Model*.
+Cardiovascular Engineering and Technology, **8**, 480–494.
+[DOI and original full text](https://doi.org/10.1007/s13239-017-0327-9).
+Methods / Passive Material Properties of Myocardium, equations (19)–(22), was
+inspected as context for a future nonlinear, anisotropic, 3D extension.
+Its constitutive equations and ventricular model are not implemented here.
+Bibliographic details checked on the publisher page on 2026-11-05.
+
 ## Lean and mathematical-library resources
 
 **[TPIL4]** Avigad, J., de Moura, L., Kong, S., and Ullrich, S., with

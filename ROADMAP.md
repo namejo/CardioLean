@@ -58,3 +58,17 @@ The follow-up completed constant nonzero inflow and interval-local conditional
 uniqueness, documented in [Chapter 3](docs/models/WindkesselConstant.md).
 A sourced volume/valve interface and switching regularity remain next candidates. Calcium buffering and ventricular pressure–volume papers
 remain reading candidates; their equations have not been adopted.
+
+## Current direction — passive cardiomyocyte stretching first
+
+The user selected passive Maxwell/Kelvin–Voigt mechanics before active contraction.
+The first scalar branch laws, energy/rate checks, Maxwell relaxation, and
+Kelvin–Voigt creep are implemented in `Mechanics/LinearViscoelastic.lean`.
+[Chapter 4](docs/models/PassiveViscoelasticity.md) provides the mathematical learning
+path and [the source audit](docs/research/002-viscoelastic-source-audit.md) records
+an unresolved discrepancy with one displayed paper equation.
+
+Next: inspect source corrections / intended derivation, verify history-solution
+theory and complete energy inequalities, then compare candidate networks with
+a specified passive loading dataset. Finite-strain anisotropy, geometry, and
+active contraction need separate sources and model decisions.

@@ -52,7 +52,9 @@ journal/                     Learning notes and open questions
 docs/MODEL_TEMPLATE.md       Scientific and mathematical documentation checklist
 ```
 
-The current implementation contains two small components: [Hill force–velocity](CardioLean/Contraction/Hill.lean) and [zero-inflow two-element Windkessel circulation](CardioLean/Circulation/Windkessel.lean). The other reserved modules document intended purposes. These components are not yet coupled. The Windkessel follow-up also implements
+The current implementation contains the following small components: [Hill force–velocity](CardioLean/Contraction/Hill.lean) and [zero-inflow two-element Windkessel circulation](CardioLean/Circulation/Windkessel.lean). Passive mechanical elements are also implemented in
+[LinearViscoelastic.lean](CardioLean/Mechanics/LinearViscoelastic.lean). The remaining
+reserved modules document intended purposes. These components are not yet coupled. The Windkessel follow-up also implements
 constant inflow and conditional uniqueness in
 [WindkesselConstant.lean](CardioLean/Circulation/WindkesselConstant.lean).
 
@@ -112,6 +114,21 @@ these cases and distinguishes uniqueness from parameter identification.
 The Lean workflow also runs `lake env lean test/ModelChecks.lean` to exercise
 the public API and excluded parameter regimes. Notebook execution is checked
 separately; see [the verification record](docs/VERIFICATION.md).
+
+## Passive stretching before active contraction
+
+The current user-selected direction is passive cardiomyocyte mechanics first.
+[Chapter 4](docs/models/PassiveViscoelasticity.md) introduces stress/strain,
+Maxwell and Kelvin–Voigt elements, a candidate parallel network, creep,
+relaxation, energy, frequency response, and a learning path toward nonlinear
+and active models. Its status table distinguishes the checked Lean results from
+informal derivations and future work.
+
+[The notebook](notebooks/passive-viscoelasticity.ipynb) illustrates synthetic
+responses and dissipation. [The source audit](docs/research/002-viscoelastic-source-audit.md)
+records a discrepancy between a paper's displayed coefficient and the equation
+derived from the pictured topology. This is unresolved scientific traceability
+work, not a claim that the whole paper or its experiments are invalid.
 
 ## Learning and contributing
 

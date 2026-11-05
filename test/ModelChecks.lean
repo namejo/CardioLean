@@ -58,3 +58,22 @@ example {t : ℝ} (ht : 0 ≤ t) :
 -- The previous zero-input model remains an exact specialization.
 example : constantPressure 2 (1 / 2) 5 0 10 = decay 2 (1 / 2) 5 10 :=
   constantPressure_zero 2 (1 / 2) 5 10
+
+-- Passive mechanics: energy dissipation must not be assumed for negative viscosity.
+example : ¬ (0 ≤ CardioLean.Mechanics.LinearViscoelastic.dashpotStress (-1) 1 * 1) := by
+  norm_num [CardioLean.Mechanics.LinearViscoelastic.dashpotStress]
+
+-- Source audit: one pointwise tuple satisfies all supplied branch/rate relations,
+-- but distinguishes the network-derived coefficient from the displayed Eq.(4).
+-- All parameters are positive; this is an algebraic check, not a fitted experiment.
+example :
+    CardioLean.Mechanics.LinearViscoelastic.parallelStress 1 1 0 1 0 = 1 ∧
+    CardioLean.Mechanics.LinearViscoelastic.maxwellStressRate 1 2 0 1 = 1 ∧
+    (2 : ℝ) = 1 * 1 + 1 * 0 + 1 ∧
+    (1 : ℝ) * 2 * 0 + (1 * 2 + 1 * 2 + 1 * 1) * 1 + 1 * 1 * 0 = 1 * 1 + 2 * 2 ∧
+    (1 : ℝ) * 2 * 0 + (1 * 2 + 1 * 1 + 1 * 1) * 1 + 1 * 1 * 0 ≠ 1 * 1 + 2 * 2 := by
+  norm_num [CardioLean.Mechanics.LinearViscoelastic.parallelStress,
+    CardioLean.Mechanics.LinearViscoelastic.kelvinVoigtStress,
+    CardioLean.Mechanics.LinearViscoelastic.springStress,
+    CardioLean.Mechanics.LinearViscoelastic.dashpotStress,
+    CardioLean.Mechanics.LinearViscoelastic.maxwellStressRate]

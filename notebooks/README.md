@@ -66,3 +66,20 @@ for the conditional uniqueness proof and its assumptions. Run:
 
 This regenerates `docs/assets/windkessel-constant-inflow.png`. Numerical checks
 do not prove uniqueness or general parameter identifiability.
+
+## Passive stretching
+
+[passive-viscoelasticity.ipynb](passive-viscoelasticity.ipynb) compares basic hold
+and creep responses, a finite ramp–hold–return for a candidate parallel network,
+pointwise power identities, harmonic loop areas, and the source-audit example.
+Read [Chapter 4](../docs/models/PassiveViscoelasticity.md) and
+[the unresolved source discrepancy](../docs/research/002-viscoelastic-source-audit.md).
+Using the same optional environment:
+
+```bash
+.venv-notebooks/bin/python notebooks/execute.py passive-viscoelasticity.ipynb
+```
+
+This regenerates `docs/assets/passive-viscoelasticity.png`. Values are synthetic.
+Ramp corners are excluded from ordinary-derivative power checks. The integrated
+loop-area and complex-modulus formulas are not yet Lean theorems.

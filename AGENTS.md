@@ -74,6 +74,15 @@ completed**, **Independently reviewed**. Apply them per definition or result.
 Independent review requires an identified reviewer and scope; do not infer it
 from compilation, an automated agent pass, or the presence of a citation.
 
+## Current modeling direction
+
+The user selected passive stretching first for Maxwell/Kelvin–Voigt cardiomyocyte
+mechanics, followed by active contraction later. Keep passive branch laws separate
+from active force generation. Read `docs/models/PassiveViscoelasticity.md` and
+`docs/research/002-viscoelastic-source-audit.md` before adopting published network
+equations or fitted parameters. Preserve the distinction between a diagram-derived
+model and a verbatim paper equation when discrepancies remain unresolved.
+
 ## Learning, scope, and change hygiene
 
 - Explain concepts with ordinary language and motivating examples. Do not assume

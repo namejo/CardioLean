@@ -20,6 +20,7 @@ public import CardioLean.Foundations.DifferentialEquations
 public import CardioLean.Foundations.ModelParameters
 public import CardioLean.Foundations.PhysicalUnits
 public import CardioLean.Mechanics.Elasticity
+public import CardioLean.Mechanics.LinearViscoelastic
 public import CardioLean.Mechanics.TissueStress
 public import CardioLean.Mechanics.VentricularMechanics
 public import CardioLean.Models.CardiacCell
@@ -31,5 +32,6 @@ public import CardioLean.Models.ZeroDimensionalHeart
 
 Library entry point. Imports every project module so `lake build` checks the
 entire structure. `Contraction.Hill`, `Circulation.Windkessel`, and
-`Circulation.WindkesselConstant` currently define mathematics; the other modules document future work. See README.md and docs/MODEL_TEMPLATE.md.
+`Circulation.WindkesselConstant`, and `Mechanics.LinearViscoelastic` currently
+define mathematics; the other modules document future work. See README.md and docs/MODEL_TEMPLATE.md.
 -/

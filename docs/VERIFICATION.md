@@ -195,3 +195,58 @@ of the closed observation interval, including endpoints. It is conditional on
 the existence of those candidates. General-input existence, weaker endpoint
 regularity, switching inputs/valves, infinite-time limits, numerical-method
 guarantees, parameter fitting, and physiological validation remain open.
+
+## Passive Maxwell/Kelvin–Voigt foundations (2026-11-05)
+
+The user selected passive stretching first, followed by active contraction later.
+Work was performed on Proxmox `prohomelab`, `/root/CardioLean`, using Lean 4.35.0,
+Lake 5.0.0-src+eb6cafb, and Mathlib
+`56a005855ea17e0b0958f73ec801ae140b0a1679`. Toolchain and dependency pins are unchanged.
+
+These commands exited successfully on the final Lean code:
+
+```bash
+lake exe cache get
+lake build
+lake env lean CardioLean/Mechanics/LinearViscoelastic.lean
+lake env lean test/ModelChecks.lean
+```
+
+The full build completed 2222 jobs without warnings. The new mechanics module
+contains 15 named checked theorems; the library now contains 41 named model
+theorems. An `import all` / `#print axioms` audit of all 41 reported only
+`propext`, `Classical.choice`, and `Quot.sound`, with no custom axiom or `sorryAx`.
+The source-map index includes all actual theorem names and new definitions.
+
+The model checks include negative viscosity producing negative dashpot power and
+a complete positive-parameter pointwise tuple that satisfies the parallel-network
+branch/rate relations. It yields 5=5 for the topology-derived coefficient and
+4!=5 for the coefficient currently displayed in Caporizzo2018 HTML equation (4).
+The diagram was visually inspected and the displayed HTML/MathML was read.
+The publisher PDF, possible errata, and authors' intended interpretation remain
+unverified; the literature issue is Under investigation. No claim of an erratum
+or of invalid experimental results is made.
+
+The notebook completed every cell in a fresh kernel using Python 3.13.5 and the
+existing optional package pins:
+
+```bash
+python notebooks/execute.py passive-viscoelasticity.ipynb
+```
+
+All values were synthetic. The basic-element time constant was 0.5 s; Maxwell
+post-loading stress at that time was approximately 7.357589 Pa from an initial
+20 Pa. Finite ramp–hold–return calculations checked 2197 smooth-phase pointwise
+power balances, with maximum absolute residual about `2.66e-15 Pa/s`. Ramp
+corners were excluded from ordinary-derivative checks. Numerically integrated
+steady-cycle loop work agreed with the informal harmonic formula within relative
+tolerance `1e-4` for Kelvin–Voigt, Maxwell, and the parallel network. The plot was
+visually inspected. These do not prove an integrated energy inequality or a
+complex-modulus theorem in Lean.
+
+Markdown/notebook links, all root-module imports, absence of proof holes, saved
+notebook completion, and original README introduction preservation were checked.
+The selected linear network is bilateral, so compression/slackening limits are
+documented explicitly. No experiment was fitted, no cell parameters were inferred,
+and no complete passive or active cardiomyocyte model was validated. Hosted CI
+for the published commit requires its own observed outcome.
