@@ -79,7 +79,7 @@ The implementation contains the following statements in the namespace `CardioLea
 | `velocity_antitoneOn` | Show that increasing force cannot increase velocity on `[0, F₀]`. |
 | `velocity_strictAntiOn` | Show strict decrease when `b > 0`. |
 
-Read the implementation comments and [Hill model notes](docs/models/Hill.md) for the exact hypotheses and proof strategies. Build verification is recorded above.
+Start with [Chapter 1: understanding Hill](docs/models/Hill.md), then explore the [force–velocity notebook](notebooks/hill-exploration.ipynb). [Notebook setup instructions](notebooks/README.md) explain how to rerun the plots. The implementation comments connect each proof to its assumptions; build verification is recorded above.
 
 Hill's original work studied skeletal muscle. Using this relationship as a learning example does not validate its applicability to cardiac muscle. Source details and links are in [REFERENCES.md](REFERENCES.md).
 

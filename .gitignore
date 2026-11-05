@@ -16,3 +16,8 @@
 # Local credentials must never enter the repository.
 .env
 .env.*
+
+# Optional Python notebook environments and temporary notebook state
+/.venv-notebooks/
+__pycache__/
+.ipynb_checkpoints/

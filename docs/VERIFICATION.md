@@ -61,3 +61,29 @@ No human independent mathematical or scientific review has been recorded. Units
 are described but not enforced by Lean types. Mathematical proofs about this
 specified function do not establish physiological accuracy, experimental fit,
 or applicability to human cardiac muscle.
+
+## Hill chapter and notebook follow-up (2026-11-05)
+
+The expanded Hill chapter, journal questions, and optional notebook were checked
+on the same Proxmox host. No Lean source, theorem statement, or Lean dependency
+was changed. `lake exe cache get` and `lake build` exited successfully again
+(910 jobs, no warnings).
+
+The notebook was executed from a fresh kernel using Python 3.13.5 and the versions
+in `notebooks/requirements.txt` (Matplotlib 3.11.2, ipykernel 7.4.0, NBClient 0.11.0).
+The execution command, with these optional packages installed, was:
+
+```bash
+python notebooks/execute.py
+```
+
+All code cells completed without errors. The baseline example gave velocities
+0.4, approximately 0.066667, and 0 m/s at forces 0, 0.5, and 1 N. Checks on
+101 baseline samples passed; the largest absolute product-equation residual was
+approximately `2.78e-17 N·m/s`. This records floating-point observations, not a
+new mathematical proof or experimental validation.
+
+The exported chapter figure was visually inspected. Markdown and notebook links,
+notebook format, and preservation of the original README introduction were checked.
+The optional Python environment and notebook checkpoint directories are ignored.
+The GitHub workflow checks Lean; notebook execution was checked separately on Proxmox.
