@@ -52,8 +52,10 @@ documentation and namespaces; compiling them does not verify future model equati
 ## What remains separate
 
 GitHub Actions is configured in [lean.yml](../.github/workflows/lean.yml) using
-pinned action revisions. A local build is not evidence of a successful hosted CI
-run; consult the workflow result for the corresponding published commit.
+pinned action revisions. The [initial hosted workflow run](https://github.com/namejo/CardioLean/actions/runs/41995730781)
+for commit `a01e6d8917bfa9bb771acd8f0f7ef169edf405b9` completed with conclusion
+`success` on 2026-11-05. This is separately observed CI evidence, in addition to
+the Proxmox checks above. Later commits require their own workflow results.
 
 No human independent mathematical or scientific review has been recorded. Units
 are described but not enforced by Lean types. Mathematical proofs about this

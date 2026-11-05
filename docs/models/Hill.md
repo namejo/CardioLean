@@ -163,8 +163,9 @@ confirmed that the public API and velocity formula are available through
 Lean's standard `propext`, `Classical.choice`, and `Quot.sound`; it reported no
 `sorryAx` or custom axioms.
 
-These are observed checks on Proxmox. No hosted GitHub Actions run or independent
-human scientific or mathematical review has yet been observed. Experimental
+These are observed checks on Proxmox. The [hosted GitHub Actions run](https://github.com/namejo/CardioLean/actions/runs/41995730781)
+also completed successfully for commit `a01e6d8` on 2026-11-05. No independent
+human scientific or mathematical review has been recorded. Experimental
 evidence in Hill's paper is separate from proof checking of this real-valued
 function. CardioLean has performed no new experiments or empirical validation.
 

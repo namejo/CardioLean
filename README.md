@@ -33,7 +33,7 @@ lake build
 
 The first command downloads precompiled Mathlib files. The second checks the library, including every planned module imported by `CardioLean.lean`. A successful build establishes that Lean accepts the included definitions and proofs against the pinned dependencies. It does not establish that an equation accurately describes heart physiology. The GitHub Actions workflow in [`.github/workflows/lean.yml`](.github/workflows/lean.yml) repeats these checks on pushes and pull requests.
 
-**Setup verification (2026-11-05):** `lake exe cache get`, `lake build`, and a direct Lean check of `Hill.lean` succeeded on Proxmox with the pinned versions. All six theorem declarations below were checked. See [the verification record](docs/VERIFICATION.md) for the environment and limits of these checks. Hosted CI is configured; its result must be checked separately.
+**Setup verification (2026-11-05):** `lake exe cache get`, `lake build`, and a direct Lean check of `Hill.lean` succeeded on Proxmox with the pinned versions. All six theorem declarations below were checked. See [the verification record](docs/VERIFICATION.md) for the environment and limits of these checks. [GitHub Actions also passed](https://github.com/namejo/CardioLean/actions/runs/41995730781) for commit `a01e6d8`.
 
 ## Repository map
 
