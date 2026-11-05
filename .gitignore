@@ -1,0 +1,18 @@
+# Lake dependencies and generated compilation artifacts
+/.lake/
+/lake-packages/
+*.olean
+*.ilean
+*.olean.server
+*.olean.private
+*.trace
+
+# Local editor and operating-system files
+/.vscode/
+.idea/
+.DS_Store
+*~
+
+# Local credentials must never enter the repository.
+.env
+.env.*
