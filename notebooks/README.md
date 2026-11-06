@@ -83,3 +83,31 @@ Using the same optional environment:
 This regenerates `docs/assets/passive-viscoelasticity.png`. Values are synthetic.
 Ramp corners are excluded from ordinary-derivative power checks. The integrated
 loop-area and complex-modulus formulas are not yet Lean theorems.
+
+## Pixel and voxel method exploration
+
+[voxel-method.ipynb](voxel-method.ipynb) is the saved-output entry point for the
+MRI-informed voxel proposal. Read [Chapter 5](../docs/models/VoxelMechanics.md)
+and [the literature guide](../docs/research/003-voxel-method-literature.md).
+
+Using the existing optional notebook environment:
+
+~~~bash
+.venv-notebooks/bin/python notebooks/execute.py voxel-method.ipynb
+~~~
+
+The notebook calls [experiments/voxel_method.py](../experiments/voxel_method.py),
+which is the single numerical implementation. It can also be run directly:
+
+~~~bash
+.venv-notebooks/bin/python experiments/voxel_method.py
+~~~
+
+Both commands run the numerical assertions and regenerate the figure plus
+[JSON diagnostics](../docs/research/voxel-method-results.json). The examples cover
+2D grid energy/rigidity, a 3D connectivity sanity check, an eight-coefficient
+known-stress tensor fit, and idealized observation geometry. They do not import
+MRI or identify patient properties. The current Lean module is planar.
+NumPy is supplied transitively by the existing optional packages; NumPy 2.5.4
+was used for this run and its version is recorded in the JSON. No Lean dependency
+was added. Exact transitive Python versions remain unlocked.

@@ -117,3 +117,42 @@ A living guide, accessed 2026-11-05; covers Lake projects and Mathlib caches.
 
 Complex-model module names reserve future study topics. No Rice, Land, or other
 complex-model equation or bibliographic claim is introduced by those names.
+
+## MRI-informed grids and inverse mechanics
+
+**[Mao2010]** Mao, X., Xu, N., and Lubensky, T. C. (2010).
+*Soft Modes and Elasticity of Nearly Isostatic Lattices: Randomness and Dissipation*.
+Physical Review Letters, **104**, 085504.
+[DOI](https://doi.org/10.1103/PhysRevLett.104.085504).
+[Author preprint and publication record](https://arxiv.org/abs/0909.2616).
+
+**[Asner2016]** Asner, L., et al. (2016).
+*Estimation of passive and active properties in the human heart using 3D tagged MRI*.
+Biomechanics and Modeling in Mechanobiology, **15**, 1121–1139.
+[DOI and original open article](https://link.springer.com/article/10.1007/s10237-015-0748-z).
+Published online in 2015; the volume year is 2016.
+
+**[Hadjicharalambous2015]** Hadjicharalambous, M., Chabiniok, R., Asner, L.,
+Sammut, E., Wong, J., Carr-White, G., Lee, J., Razavi, R., Smith, N., and
+Nordsletten, D. (2015).
+*Analysis of passive cardiac constitutive laws for parameter estimation using
+3D tagged MRI*. Biomechanics and Modeling in Mechanobiology, **14**, 807–828.
+[DOI and original open article](https://link.springer.com/article/10.1007/s10237-014-0638-9).
+Published online in 2014; the volume year is 2015.
+
+**[Castelein2025]** Castelein, J., et al. (2025).
+*Reproducibility of Cardiac Multifrequency MR Elastography in Assessing Left
+Ventricular Stiffness and Viscosity*. Journal of Magnetic Resonance Imaging,
+**61**(5), 2146–2154.
+[DOI and original open article](https://onlinelibrary.wiley.com/doi/full/10.1002/jmri.29640).
+
+**[Parvizian2007]** Parvizian, J., Düster, A., and Rank, E. (2007).
+*Finite cell method: h- and p-extension for embedded domain problems in solid
+mechanics*. Computational Mechanics, **41**(1), 121–133.
+[DOI and publisher record](https://link.springer.com/article/10.1007/s00466-007-0173-y).
+
+Evidence depth, exact inspected sections, adoption limits, and access date
+(2026-11-06) are recorded in [the voxel literature guide](docs/research/003-voxel-method-literature.md).
+Parvizian2007 was inspected at metadata/abstract level only; no finite-cell
+algorithm is attributed to an unread full equation. The network and tensor
+examples are project constructions, not reproductions of a cited heart model.

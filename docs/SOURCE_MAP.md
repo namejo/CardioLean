@@ -91,3 +91,54 @@ These branches are **Under investigation**, with evidence and next prerequisites
 in [the research tree](research/001-next-directions.md). Other reserved modules
 remain **Not started**. No independent human review or physiological validation
 is implied by any status here.
+
+## Planar network: voxel-method mathematical precursor
+
+[PlanarNetwork.lean](../CardioLean/Mechanics/PlanarNetwork.lean), namespace
+`CardioLean.Mechanics.PlanarNetwork`, adds the following representations,
+all **Formal definition completed**: `Vector`, `dot`, `Edge`, `extension`, `reverse`, `startForce`, `finishForce`, `pairedPower`, `internalPower`, `edgeEnergy`, `networkEnergy`, `networkDissipation`, `simpleShear`.
+
+These are project constructions. The supplied edge directions are not
+automatically checked as normalized image-derived geometry. Force/extension
+units differ from the scalar source module's stress/strain interpretation.
+
+All 21 theorems below have status **Machine-checked proof completed**:
+
+| Provenance and scope | Actual theorem names |
+| --- | --- |
+| Axial compatibility; project vector algebra, with fixed reference-aligned directions for rotation | `extension_reverse`, `extension_translation`, `extension_infinitesimal_rotation`, `extension_hasDerivAt` |
+| Equal/opposite endpoint forces and finite-sum virtual power; project derivation | `paired_force_cancels`, `paired_power_eq`, `internal_power_eq` |
+| Connection/finite-network stored energy and sign conditions; standard element laws from Roylance2001 | `edge_energy_nonneg`, `edge_energy_hasDerivAt`, `network_energy_nonneg`, `network_dissipation_nonneg`, `network_energy_hasDerivAt` |
+| Parallel branch laws and finite sums; project derivation reusing LinearViscoelastic | `network_power_balance`, `network_energy_hasDerivAt_power`, `network_energy_hasDerivAt_internalPower` |
+| Square-grid limitation motivated by Mao2010 original abstract; explicit finite-dimensional project proof | `horizontal_shear_extension`, `vertical_shear_extension`, `shear_relative_displacement_nonzero`, `shear_not_infinitesimal_rigid_motion` |
+| Known-force Kelvin–Voigt proportional-rate ambiguity; project algebra, not a theorem adopted from an MRI paper | `proportional_rate_force`, `proportional_rate_parameter_ambiguity` |
+
+The strongest energy result is an actual conditional stored-energy derivative,
+equal to minus internal nodal power minus dissipation. Supplied nodal motion and
+Maxwell states must have the stated derivatives and satisfy the branch law.
+A full mass/external-work equation, existence/uniqueness, and an integrated
+energy inequality are not claimed. Parameter signs needed for physical
+passivity are separate hypotheses of the sign theorems.
+
+The [chapter](models/VoxelMechanics.md) supplies assumptions and units.
+[PlanarNetworkChecks.lean](../test/PlanarNetworkChecks.lean) checks endpoint
+force reversal, invisible shear, finite-rotation limitations, direction scaling,
+positive indistinguishable parameter pairs, and negative-stiffness exclusions.
+
+### Numerical exploration and reading-only sources
+
+The [experiment](../experiments/voxel_method.py),
+[executed notebook](../notebooks/voxel-method.ipynb), and
+[JSON results](research/voxel-method-results.json) have status **Under investigation**.
+They independently implement numerical formulas; they are not extracted from
+Lean. The 3D connection check and eight-coefficient tensor fit are not Lean
+theorems or a completed 3D voxel constitutive model.
+
+Asner2016 sections 2.2/2.4, Hadjicharalambous2015 section 2.3.1 equations (13)–(14)
+and Theorem 2, and Castelein2025 acquisition/processing sections inform the
+measurement and identifiability discussion. Their cardiac constitutive equations,
+inversion procedures and experimental results are not formalized here.
+Parvizian2007 is an abstract-only continuum-grid reading candidate.
+[The literature audit](research/003-voxel-method-literature.md) records access and
+exact adoption limits. No physiological validation or independent human review
+is claimed.

@@ -72,3 +72,25 @@ Next: inspect source corrections / intended derivation, verify history-solution
 theory and complete energy inequalities, then compare candidate networks with
 a specified passive loading dataset. Finite-strain anisotropy, geometry, and
 active contraction need separate sources and model decisions.
+
+## Exploration branch — MRI-informed pixels and voxels (2026-11-06)
+
+The author requested an exploratory prototype before later feedback.
+[Chapter 5](docs/models/VoxelMechanics.md) and
+[the source guide](docs/research/003-voxel-method-literature.md) record its choices.
+
+- Study the checked planar axial-network geometry and energy identities.
+- Compare axial and diagonal connectivity with synthetic shear/rigidity checks.
+- Examine whether eight material coefficients can be recovered under different
+  known synthetic strain/rate histories and observation choices.
+- Review the separate meanings of reslicing, acquiring another motion component,
+  and changing the loading protocol.
+- Select a tissue region, dimensional reduction, and constitutive family after
+  reviewing available imaging and loading data.
+- Establish boundary/reference states and a small identifiable regional parameter
+  set before patient-data fitting.
+- Treat continuum discretization, 3D extension, finite strain, near incompressibility,
+  noise, convergence, and physiological validation as explicit subsequent work.
+
+The tensor fit is a learning experiment with known stresses, not an MRI inverse
+solution. Active contraction remains a later extension.

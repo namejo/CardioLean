@@ -12,7 +12,8 @@ os.environ["PATH"] = str(Path(sys.executable).parent) + os.pathsep + os.environ[
 parser = argparse.ArgumentParser(description="Execute a CardioLean exploration notebook.")
 parser.add_argument("notebook", nargs="?", default="hill-exploration.ipynb",
                     choices=["hill-exploration.ipynb", "windkessel-exploration.ipynb",
-                             "windkessel-constant-inflow.ipynb", "passive-viscoelasticity.ipynb"])
+                             "windkessel-constant-inflow.ipynb", "passive-viscoelasticity.ipynb",
+                             "voxel-method.ipynb"])
 args = parser.parse_args()
 path = Path(__file__).resolve().with_name(args.notebook)
 notebook = nbformat.read(path, as_version=4)

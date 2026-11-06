@@ -250,3 +250,85 @@ The selected linear network is bilateral, so compression/slackening limits are
 documented explicitly. No experiment was fitted, no cell parameters were inferred,
 and no complete passive or active cardiomyocyte model was validated. Hosted CI
 for the published commit requires its own observed outcome.
+
+## Pixel/voxel-method exploration (2026-11-06)
+
+Work was performed on Proxmox prohomelab in /root/CardioLean, branch
+feature/voxel-method-exploration. The pins remain Lean 4.35.0, Lake
+5.0.0-src+eb6cafb, and Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679.
+LEAN_NUM_THREADS=4 was used. On the final Lean source, all these commands exited 0
+without warnings:
+
+~~~bash
+lake exe cache get
+lake build
+lake env lean CardioLean/Mechanics/PlanarNetwork.lean
+lake env lean test/ModelChecks.lean
+lake env lean test/PlanarNetworkChecks.lean
+~~~
+
+The full build completed 2223 jobs. The new module contains 21 named checked
+theorems; the library now contains 62. An import-all / print-axioms audit of
+all 62 returned only propext, Classical.choice, and Quot.sound.
+No custom axiom, proof hole, or proof-bypassing mechanism was used.
+
+The strongest new result gives an actual total stored-energy derivative in
+terms of internal nodal power and dissipation, conditional on supplied
+differentiable trajectories and Maxwell laws. It is not a nodal ODE solution,
+external-work theorem, integrated energy inequality, rigidity theorem, or
+physiological validation. Unit directions and unique links remain geometry
+preconditions documented outside the raw Edge structure.
+Six new standalone examples check important exclusions and sign conventions.
+
+The numerical script and notebook were executed on Proxmox with Python
+3.13.5, NumPy 2.5.4,
+and Matplotlib 3.11.2 in the existing optional environment:
+
+~~~bash
+python experiments/voxel_method.py
+python -m py_compile experiments/voxel_method.py
+python notebooks/execute.py voxel-method.ipynb
+~~~
+
+The notebook completed all six code cells in a fresh kernel, saved output and
+an embedded PNG. The standalone figure was visually inspected. No optional
+Python dependency was added to the Lean build.
+
+Recorded synthetic results:
+
+- 3-by-3 planar node grid: axial/diagonal free nullities 6/3; after three
+  rigid-motion constraints, 3/0. Shear energy 0/0.0025 under the stated toy weights.
+- 3-by-3-by-3 node cube: six-neighbor/face-and-body-diagonal free nullities 27/6;
+  after six rigid-motion constraints, 21/0. This checks only 3D topology, using
+  unit weights; it is not a calibrated 3D tissue constitutive law.
+- Eight-coefficient planar orthotropic Kelvin–Voigt fit: no-shear design rank 6;
+  adding the same equations re-expressed at 90 degrees leaves rank 6; independent
+  normal/shear/rate histories give rank 8 (363 equations). The nondimensional
+  full-rank condition number was approximately 24.6841. Maximum noise-free
+  coefficient error was 6.55e-15.
+- Separate idealized displacement projectors: one xy observation rank 2;
+  adding its screen-coordinate rotation stays rank 2; a genuinely measured yz
+  component raises the stacked rank to 3. This is not the eight-parameter fit.
+- Maximum tensor power residual was about 8.88e-16; graph edge-power residual
+  about 3.47e-18; dynamic supplied-tuple power residual about 2.78e-17.
+- Under explicitly chosen 2D toy weights, two affine deformation energies were
+  unchanged at node counts 2, 3, 5 and 9 per axis. This is not general mesh
+  convergence or constitutive calibration.
+
+[The JSON record](research/voxel-method-results.json) includes full singular
+values, rank tolerances, normalization, coefficients and limitations.
+Known synthetic stresses are provided to the linear tensor fit; ordinary MRI
+does not supply these local stresses. No real images were imported or fitted.
+There is no noise/uncertainty study, nonlinear identification guarantee, active
+contraction, or physiological comparison.
+
+The source audit used primary full text where stated and publisher/author
+abstracts where full equations were unavailable. Mao2010 was inspected at
+abstract level; Parvizian2007 remains an abstract-only reading candidate.
+GitHub Actions status is separate from these observed Proxmox checks.
+
+Final structural checks also passed: all 27 library modules are imported by the
+root, 161 local Markdown/notebook links resolve, all six new notebook code cells
+have completed outputs with an embedded figure, and the original README from
+commit 4bf4c0f remains an unchanged prefix. Git diff whitespace checks and the
+updated notebook-runner syntax check passed.

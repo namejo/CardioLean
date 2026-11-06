@@ -83,6 +83,14 @@ from active force generation. Read `docs/models/PassiveViscoelasticity.md` and
 equations or fitted parameters. Preserve the distinction between a diagram-derived
 model and a verbatim paper equation when discrepancies remain unresolved.
 
+The author also requested exploration of MRI-informed pixels/voxels before later
+feedback. Read docs/models/VoxelMechanics.md and the voxel literature guide.
+Preserve the distinction between the planar axial Lean model, numerical topology
+checks, the illustrative eight-coefficient tensor fit, and an unimplemented MRI
+inverse pipeline. Rotating existing observations is different from acquiring a
+missing motion component. Synthetic known-stress recovery is not patient-data
+identification, and positive coefficients alone do not establish network rigidity.
+
 ## Learning, scope, and change hygiene
 
 - Explain concepts with ordinary language and motivating examples. Do not assume

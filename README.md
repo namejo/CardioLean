@@ -137,3 +137,17 @@ Start with [the first journal entry](journal/001-getting-started.md), [the roadm
 [CONTRIBUTING.md](CONTRIBUTING.md) explains how to report mistakes, clarify assumptions, suggest literature, and improve explanations or Lean proofs. [AGENTS.md](AGENTS.md) gives persistent instructions to coding agents. Corrections should remain visible in the journal so that the repository can document how the work changes over time.
 
 Mathematical proof status and experimental evidence must be recorded separately. An accepted Lean proof verifies a precise mathematical statement under stated assumptions; a biological interpretation still needs scientific evidence and critical review.
+
+## MRI-informed pixel and voxel exploration
+
+Start with [Chapter 5: voxel mechanics](docs/models/VoxelMechanics.md), then open
+the [executed synthetic notebook](notebooks/voxel-method.ipynb).
+The [literature guide](docs/research/003-voxel-method-literature.md) compares axial
+networks with pixel/voxel continuum methods and MRI-based parameter estimation.
+
+The planar Lean foundation checks axial geometry, force/power signs, finite-sum
+energy identities, a square-grid shear limitation, and a restricted-experiment
+parameter ambiguity. The numerical work explores grid rigidity and an explicitly
+chosen eight-parameter material law. It distinguishes rotating existing data from
+acquiring a missing motion component. No MRI data have been fitted, and no
+patient-specific tissue properties or complete 3D cardiac model are claimed.
